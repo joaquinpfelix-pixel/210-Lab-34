@@ -14,16 +14,18 @@ void Graph::addEdge(int u, int v, int weight)
 
 void Graph::printGraph()
 {
-    cout << "Graph adjacency list:\n";
+    cout << "Campus Navigation Network:\n";
+    cout << "================================\n";
 
     for (int i = 0; i < size; i++)
     {
-        cout << i << " --> ";
+        cout << "Building " << i << " connects to:\n";
+
         for (auto &n : adj[i])
         {
-            cout << "(" << n.first << ", " << n.second << ") ";
+            cout << " -> Building " << n.first
+                 << " (Distance: " << n.second << " mins)\n";
         }
-        cout << endl;
     }
 }
 
