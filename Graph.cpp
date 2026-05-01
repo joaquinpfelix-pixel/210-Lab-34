@@ -120,13 +120,13 @@ void Graph::primMST()
 {
     vector<int> key(size, INT_MAX);
     vector<bool> inMST(size, false);
-    vector<int> parent(size, 0);
+    vector<int> parent(size, -1);
 
     key[0] = 0;
     
     for (int count = 0; count < size - 1; count++)
     {
-        int u = 0;
+        int u = -1;
 
         for (int i = 0; i < size; i++)
         {
@@ -138,7 +138,26 @@ void Graph::primMST()
 
         inMST[u] = true;
 
-        for (auto &n : adj)
+        for (auto &n : adj[u])
+        {
+            int v = n.first;
+            int weight = n.second;
+
+            if (!inMST[v] && weight < key[v])
+            {
+                key[v] = weight;
+                parent[v] = u;
+            }
+        }
+    }
+
+    cout << "Minimum Spanning Tree:\n";
+
+    for (int i = 1; i < size; i++)
+    {
+        cout << "Edge from " << parent[i]
+             << " to " << i
+             << " with weight " << key[i] << endl;
     }
 }
 

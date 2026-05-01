@@ -26,6 +26,7 @@ int main()
     g.bfs(0);
 
     g.shortestPath(0);
+    g.primMST();
 
     return 0;
 }
