@@ -8,6 +8,8 @@
 #include <queue>
 using namespace std;
 
+
+
 class Graph
 {
     private:
@@ -24,6 +26,7 @@ class Graph
 
         void dfs(int start);
         void bfs(int start);
+        void shortestPath(int start);
 };
 
 #endif

@@ -25,5 +25,7 @@ int main()
     g.dfs(0);
     g.bfs(0);
 
+    g.shortestPath(0);
+
     return 0;
 }
