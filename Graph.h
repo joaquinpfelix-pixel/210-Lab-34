@@ -27,6 +27,8 @@ class Graph
         void dfs(int start);
         void bfs(int start);
         void shortestPath(int start);
+
+        void primMST();
 };
 
 #endif

@@ -83,36 +83,62 @@ void Graph::bfs(int start)
 }
 
 void Graph::shortestPath(int start)
+{
+    vector<int> dist(size, INT_MAX);
+    dist[start] = 0;
+
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+    pq.push({0, start});
+
+    while (!pq.empty())
     {
-        vector<int> dist(size, INT_MAX);
-        dist[start] = 0;
+        int u = pq.top().second;
+        pq.pop();
 
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-        pq.push({0, start});
-
-        while (!pq.empty())
+        for (auto &n : adj[u])
         {
-            int u = pq.top().second;
-            pq.pop();
+            int v = n.first;
+            int weight = n.second;
 
-            for (auto &n : adj[u])
+            if (dist[u] + weight < dist[v])
             {
-                int v = n.first;
-                int weight = n.second;
-
-                if (dist[u] + weight < dist[v])
-                {
-                    dist[v] = dist[u] + weight;
-                    pq.push({dist[v], v});
-                }
+                dist[v] = dist[u] + weight;
+                pq.push({dist[v], v});
             }
         }
+    }
 
-        cout << "\nShortest paths from building " << start << ":\n";
+    cout << "\nShortest paths from building " << start << ":\n";
+
+    for (int i = 0; i < size; i++)
+    {
+        cout << start << " -> " << i << " : " << dist[i] << endl;
+    }
+}
+
+void Graph::primMST()
+{
+    vector<int> key(size, INT_MAX);
+    vector<bool> inMST(size, false);
+    vector<int> parent(size, 0);
+
+    key[0] = 0;
+    
+    for (int count = 0; count < size - 1; count++)
+    {
+        int u = 0;
 
         for (int i = 0; i < size; i++)
         {
-            cout << start << " -> " << i << " : " << dist[i] << endl;
+            if (!inMST[i] && (u == -1 || key[i] < key[u]))
+            {
+                u = i;
+            }
         }
+
+        inMST[u] = true;
+
+        for (auto &n : adj)
     }
+}
 
