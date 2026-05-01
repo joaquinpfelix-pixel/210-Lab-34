@@ -20,13 +20,33 @@ int main()
     g.addEdge(6,7,3);
     g.addEdge(6,8,7);
 
-    g.printGraph();
+    int choice;
 
-    g.dfs(0);
-    g.bfs(0);
+    do
+    {
+        cout << "\nMenu\n";
+        cout << "1. Display graph\n";
+        cout << "2. BFS\n";
+        cout << "3. DFS\n";
+        cout << "4. Shortest path\n";
+        cout << "5. MST\n";
+        cout << "0. Exit\n";
 
-    g.shortestPath(0);
-    g.primMST();
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1 : g.printGraph(); break;
+            case 2 : g.dfs(0); break;
+            case 3 : g.bfs(0); break;
+            case 4 : g.shortestPath(0); break;
+            case 5 : g.primMST(); break;
+            case 0 : cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice\n";
+        }
+    } while (choice != 0);
+    
+    
 
     return 0;
 }
